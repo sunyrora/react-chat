@@ -3,13 +3,26 @@
 .mainContainer {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  align-items: flex-end;
   min-height: 600px;
   text-align: center;
-  background-image: url('../images/red-roses.jpg');
-  background-size: cover;
+  background-image: url('../images/bg_home.png');
+  background-size: contain;
   background-attachment: fixed;
-  padding-top: 1em;
+  background-repeat: no-repeat;
+  background-position: 0 20px; /* XY */
+  padding-top: 3em;
+}
+
+.mainContainer::before {
+  content:"";
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 100%;
+  height: 600px;
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .mainChild  {
@@ -21,20 +34,21 @@
   flex-direction: column;
   align-items: flex-end;
   padding: 5px;
-  padding-right: 30px;
+  padding-right: 10px;
   font-family: 'Tangerine', cursive;
   text-shadow: 8px 3px 3px #aaa;
 }
 
 .greetingsChild {
-  font-size: 8em;
+  font-size: 5em;
   color: rgb(0, 0, 0);
   padding: 5px;
+  width: 100%;
 }
 
 #anNyoung {
-  font-size: 4em;
-  text-shadow: 2px 2px 2px #aaa;
+  font-size: 2.5em;
+  text-shadow: 0.1em 0.1em 0.05em #aaa;
   font-weight: 300;
 }
 
@@ -47,5 +61,6 @@
   align-self: flex-end;
   background-color: rgba(250, 112, 58, 0.411);
   padding: 5px;
-  margin-bottom: 100px;
+  bottom: 50px;
+  position: absolute;
 }
