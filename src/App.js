@@ -29,7 +29,7 @@ class App extends Component {
       if(userName) {
         AuthManager.updateProfile({displayName: userName})
         .then(()=>{
-          const user = JSON.parse(JSON.stringify(userSnap));
+          // const user = JSON.parse(JSON.stringify(userSnap));
           this.props.loginSuccessRequest();
         }).catch(error=>{
             console.log(error.stack);
