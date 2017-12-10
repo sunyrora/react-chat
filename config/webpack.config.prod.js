@@ -114,6 +114,10 @@ module.exports = {
         name: 'vendor',
         // filename: 'vendor.js' // 이런식으로 파일이름을 지정해 줄 수도 있습니다. (hash 생략가능)
       }),
+      new webpack.NormalModuleReplacementPlugin(
+        /^routes$/,
+        'routes/index.async.js'
+    ),
     ],
   },
   module: {

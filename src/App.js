@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import {
-  Home,
-  Chat,
-  NoMatch,
-}from './routes/index.async';
+// import {
+//   Home,
+//   Chat,
+//   NoMatch,
+// }from './routes/index.async';
+import Home from './routes/Home';
+import Chat from './routes/Chat';
+import NoMatch from './routes/NoMatch';
 import AuthManager from './firebase/AuthManager';
 import { connect } from 'react-redux';
 import { loginSuccessRequest, logoutRequest } from './redux/authReducer';

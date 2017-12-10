@@ -23,11 +23,11 @@
 }
 
 .userName {
-  color: #8f3d88; /* mediumseagreen; */
+  color: #8f3d88;
   font-weight: 500;
   padding: 5px;
   text-align: left;
-  text-shadow: 1px 1px 1px white
+  /* text-shadow: 1px 1px 1px rgba(8f, 3d, 88, 0.3); */
 }
 
 .textContainer {
