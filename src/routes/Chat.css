@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css?family=Inconsolata|Indie+Flower|Montserrat|Ranchers|Rokkitt');
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  height: 100vh;
+
+  position: relative;
+  background-image: url('../images/white-roses.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: bottom center;
+  opacity: 0.9;
+}
+
+.mainChild {
+  flex: 0 0 auto;
+  padding: 5px;
+}
+.messageList {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin: 10px 10px 10px;
+  height: 100%;
+  overflow-y: auto;
+  padding: 10px;
+  flex: 1 1 auto;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  height: 100px;
+  width: 100%;
+  /* position: fixed; */
+  bottom: 0em;
+  padding: 5px;
+  align-items: center;
+}
+
+#loginBox {
+  align-self: flex-end;
+  margin-right: 1em;
+}

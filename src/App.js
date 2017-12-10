@@ -1,21 +1,67 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import firebase from 'firebase';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  Home,
+  Chat,
+  NoMatch,
+}from './routes/index.async';
+import AuthManager from './firebase/AuthManager';
+import { connect } from 'react-redux';
+import { loginSuccessRequest, logoutRequest } from './redux/authReducer';
+import storage from './lib/storage';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.handleAuthStateChanged = this.handleAuthStateChanged.bind(this);
+  }
+
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(this.handleAuthStateChanged);  
+  }
+
+  handleAuthStateChanged(userSnap) {
+    console.log("==== auth state chaged!! userSnap: ", userSnap);
+    if(userSnap) {
+      const userName = storage.get('userName');
+      console.log("handleAuthStateChanged::storage userName: ", userName);
+      if(userName) {
+        AuthManager.updateProfile({displayName: userName})
+        .then(()=>{
+          const user = JSON.parse(JSON.stringify(userSnap));
+          this.props.loginSuccessRequest();
+        }).catch(error=>{
+            console.log(error.stack);
+        });
+      }
+    } else {
+      this.props.logoutRequest();
+    }
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Router>
+        <div className="App">
+          <Switch>
+            <Route exact path="/" component={Home}/>
+            <Route path="/chat" component={Chat} />
+            <Route component={NoMatch}/>
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state=>({
+  authState: state.authState,
+});
+
+const mapDispatchToProps = dispatch=>({
+  loginSuccessRequest: (user) => dispatch(loginSuccessRequest(user)),
+  logoutRequest: (signInProvider)=>dispatch(logoutRequest()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

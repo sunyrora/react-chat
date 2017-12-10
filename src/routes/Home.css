@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css?family=Tangerine');
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 600px;
+  text-align: center;
+  background-image: url('../images/red-roses.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  padding-top: 1em;
+}
+
+.mainChild  {
+  padding: 10px;
+}
+
+.greetings {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 5px;
+  padding-right: 30px;
+  font-family: 'Tangerine', cursive;
+  text-shadow: 8px 3px 3px #aaa;
+}
+
+.greetingsChild {
+  font-size: 8em;
+  color: rgb(0, 0, 0);
+  padding: 5px;
+}
+
+#anNyoung {
+  font-size: 4em;
+  text-shadow: 2px 2px 2px #aaa;
+  font-weight: 300;
+}
+
+.loginBox {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: 50px;
+  min-height: 50px;
+  align-self: flex-end;
+  background-color: rgba(250, 112, 58, 0.411);
+  padding: 5px;
+  margin-bottom: 100px;
+}

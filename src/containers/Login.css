@@ -1,0 +1,23 @@
+.mainContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.mainChild {
+  align-self: center; /* vertical center*/
+  padding: 5px;
+  font-size: 1.3em;
+  margin: 3px;
+}
+
+#userName {
+  font-size: 1.3em;
+  padding: 5px;
+  color: #8f3d88;
+  text-shadow: 0.03em 0.03em 0.03em white;
+}
+
+.button {
+  font-size: 1em;
+}

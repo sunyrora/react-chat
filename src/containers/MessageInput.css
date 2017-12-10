@@ -1,0 +1,8 @@
+.mainContainer {
+  display: flex;
+}
+
+.child {
+  height: auto;
+  margin: 5px;
+}
