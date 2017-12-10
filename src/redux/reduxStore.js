@@ -11,4 +11,12 @@ const store = createStore(
   ),
 );
 
+if (process.env.NODE_ENV !== "production") {
+  if (module.hot) {
+    module.hot.accept('.', () => {
+      store.replaceReducer(reducers)
+    })
+  }
+}
+
 export default store;
