@@ -29,7 +29,7 @@ class DBManager {
     if(!handler) return Promise.reject(new Error("Invalid handler"));
     if(!this.chatMessagesRef) return Promise.reject(new Error("no chatMessagesRef"));
 
-    this.chatMessagesRef.on('child_added', handler);
+    this.chatMessagesRef.limitToLast(10).on('child_added', handler);
 
     return Promise.resolve(true);
   }

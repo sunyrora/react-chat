@@ -4,21 +4,23 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  height: 100%;
   min-height: 600px;
   text-align: center;
-  background-image: url('../images/bg_home.png');
-  background-size: contain;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-position: 0 20px; /* XY */
   padding-top: 3em;
 }
 
 .mainContainer::before {
   content:"";
+  background-image: url('../images/bg_home.png');
+  background-size: contain;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: 0 20px; /* XY */
+
   background-color: rgba(255, 255, 255, 0.5);
   width: 100%;
-  height: 600px;
+  height: 100%;
   opacity: 0.5;
   position: absolute;
   top: 0;
