@@ -3,14 +3,15 @@ import styles from './Message.css';
 import className from 'classnames/bind';
 const cx = className.bind(styles);
 
-const Message = ({userName, createdAt, text}) => {
-  const date = new Date(createdAt);
+const Message = ({currUserId, message}) => {
+  const date = new Date(message.createdAt);
+  const messagePosition = (message.userId===currUserId) ? 'right' : 'left';
   return (
-    <div className={cx('mainContainer')}>
-      <div className={cx('userName')}>{userName}</div>
+    <div className={cx('mainContainer', messagePosition)}>
+      <div className={cx('userName')}>{message.userName}</div>
       <div className={cx('textContainer')}>
         <div className={cx('text')}>
-          {text}
+          {message.text}
         </div>
         <div className={cx('createdAt')}>{date.toLocaleString()}</div>  
       </div>

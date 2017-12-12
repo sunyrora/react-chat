@@ -46,6 +46,9 @@ class Chat extends Component {
   }
 
   componentDidUpdate() {
+    if(this.MessagesList) {
+      this.MessagesList.addEventListener("scroll", this.handleScroll);
+    }
   }
 
   componentWillUnmount() {
@@ -60,6 +63,8 @@ class Chat extends Component {
     try {
       if(this.MessagesList.scrollTop <= 0) {
         const loadedMessages = await DBManager.loadOldMessages(this.state.messages[0].message.createdAt);
+        if(!loadedMessages) return;
+
         const loadedValues = Object.values(loadedMessages);
         const newMessages = update(this.state, {
           messages: {$unshift: loadedValues}
@@ -82,8 +87,9 @@ class Chat extends Component {
      */
     const message = snap.val();
     this.setState(update(this.state, {messages: {$push: [message]}}));
+
+    // scroll to bottom
     if(this.MessagesList) {
-      this.MessagesList.addEventListener("scroll", this.handleScroll);
       this.MessagesList.scrollTop = this.MessagesList.scrollHeight;
     }
   }
@@ -100,15 +106,28 @@ class Chat extends Component {
     this.props.logoutRequest(AuthProvider.ANONYM);
   }
 
+  renderMessage(message) {
+    if(!message) return null;
+    
+    return (
+      <Message 
+        key={message.id}
+        userName={message.message.userName}
+        createdAt={message.message.createdAt}
+        text={message.message.text}
+      />
+    );
+  }
+
+
   render() {
     let mapMessages = (data)=>{
       return data.map((message, i)=>{
         return (
           <Message 
             key={message.id}
-            userName={message.message.userName}
-            createdAt={message.message.createdAt}
-            text={message.message.text}
+            currUserId={this.props.authState.currentUser.uid}
+            message={message.message}
           />
         );
       });

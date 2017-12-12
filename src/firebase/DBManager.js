@@ -52,7 +52,7 @@ class DBManager {
   loadOldMessages(from, count=LOAD_COUNT) {
     if(!this.chatMessagesRef) return Promise.reject(new Error("no chatMessagesRef"));
 
-    const newMessagesPromise = this.chatMessagesRef.orderByChild([MESSAGE, CREATED_AT].join('/')).endAt(from-1).limitToLast(count).once('value');
+    const newMessagesPromise = this.chatMessagesRef.orderByChild([MESSAGE, CREATED_AT].join('/')).endAt(from-1).limitToLast(count).once('value'); // load messages where 'createdAT' is less than 'form'
 
     return newMessagesPromise.then(snap=>{
       return snap.val();
