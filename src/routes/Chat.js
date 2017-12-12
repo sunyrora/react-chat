@@ -38,6 +38,7 @@ class Chat extends Component {
     this.handleChatMessages = this.handleChatMessages.bind(this);
     this.sendMessage = this.sendMessage.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
   }
 
   componentDidMount() {
@@ -45,9 +46,6 @@ class Chat extends Component {
   }
 
   componentDidUpdate() {
-    if(this.MessagesList) {
-      this.MessagesList.scrollTop = this.MessagesList.scrollHeight;
-    }
   }
 
   componentWillUnmount() {
@@ -56,6 +54,22 @@ class Chat extends Component {
     } catch (error) {
       console.log(error.stack);
     }
+  }
+
+  async handleScroll() {
+    try {
+      if(this.MessagesList.scrollTop <= 0) {
+        const loadedMessages = await DBManager.loadOldMessages(this.state.messages[0].message.createdAt);
+        const loadedValues = Object.values(loadedMessages);
+        const newMessages = update(this.state, {
+          messages: {$unshift: loadedValues}
+        });
+
+        this.setState(({messages})=>({messages: newMessages.messages }));
+      }
+    } catch (error) {
+      console.log(error.stack);
+    } 
   }
 
   handleChatMessages(snap) {
@@ -68,7 +82,10 @@ class Chat extends Component {
      */
     const message = snap.val();
     this.setState(update(this.state, {messages: {$push: [message]}}));
-
+    if(this.MessagesList) {
+      this.MessagesList.addEventListener("scroll", this.handleScroll);
+      this.MessagesList.scrollTop = this.MessagesList.scrollHeight;
+    }
   }
 
   sendMessage(message) {
@@ -84,9 +101,8 @@ class Chat extends Component {
   }
 
   render() {
-    let messages = null;
-    if(this.state.messages) {
-      messages = this.state.messages.map((message, i)=>{
+    let mapMessages = (data)=>{
+      return data.map((message, i)=>{
         return (
           <Message 
             key={message.id}
@@ -96,15 +112,16 @@ class Chat extends Component {
           />
         );
       });
-    }
+    };
 
     return (
       <div className={cx('mainContainer')}>
         {
             !storage.get('userName') && <Redirect to="/" />
-        }        
+        }
+        
         <div className={cx('mainChild', 'messageList')} ref={c=>{this.MessagesList = c}}>
-          {messages}
+          {mapMessages(this.state.messages)}
         </div>
         <div className={cx('mainChild', 'footer')}>
           <div id={cx('messageInput')}>

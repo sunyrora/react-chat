@@ -68,7 +68,7 @@ export const loginSuccessRequest = () => {
       const user = JSON.parse(JSON.stringify(currentUser));
       dispatch(actions.login.success(user));
     } else {
-      dispatch(actions.failure(new Error("No user? C'est pas possible..")));
+      dispatch(actions.login.failure(new Error("No user? C'est pas possible..")));
     }
   }
 }

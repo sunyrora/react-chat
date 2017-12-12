@@ -4,7 +4,7 @@ import className from 'classnames/bind';
 const cx = className.bind(styles);
 
 const Message = ({userName, createdAt, text}) => {
-  const now = new Date(createdAt);
+  const date = new Date(createdAt);
   return (
     <div className={cx('mainContainer')}>
       <div className={cx('userName')}>{userName}</div>
@@ -12,7 +12,7 @@ const Message = ({userName, createdAt, text}) => {
         <div className={cx('text')}>
           {text}
         </div>
-        <div className={cx('createdAt')}>{now.toLocaleString()}</div>  
+        <div className={cx('createdAt')}>{date.toLocaleString()}</div>  
       </div>
     </div>
   );

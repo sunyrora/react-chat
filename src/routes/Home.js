@@ -27,9 +27,9 @@ class Home extends Component {
     return (
       <div className={cx('mainContainer')}>
         <div className={cx('mainChild', 'greetings')}>
-          <div class={cx('greetingsChild')} id={cx('anNyoung')} >안녕하세요</div>
-          <div class={cx('greetingsChild')} id={cx('bonjour')}>Bonjour</div>
-          <div class={cx('greetingsChild')} id={cx('hello')}>Hello</div>
+          <div className={cx('greetingsChild')} id={cx('anNyoung')} >안녕하세요</div>
+          <div className={cx('greetingsChild')} id={cx('bonjour')}>Bonjour</div>
+          <div className={cx('greetingsChild')} id={cx('hello')}>Hello</div>
         </div>
         <div className={cx('mainChild', 'loginBox')}>
           <Login 

@@ -5,6 +5,9 @@ import FireApp from './FireApp';
 const firebaseApp = FireApp.getApp();
 
 const CHAT_MESSAGES = 'chat-messages';
+const MESSAGE = 'message';
+const CREATED_AT = 'createdAt';
+const LOAD_COUNT = 10;
 
 class DBManager {
   constructor() {
@@ -25,11 +28,11 @@ class DBManager {
     this.isInit = true;
   }
 
-  setChatMessagesHandler(handler) {
+  setChatMessagesHandler(handler, count=LOAD_COUNT) {
     if(!handler) return Promise.reject(new Error("Invalid handler"));
     if(!this.chatMessagesRef) return Promise.reject(new Error("no chatMessagesRef"));
 
-    this.chatMessagesRef.limitToLast(10).on('child_added', handler);
+    this.chatMessagesRef.limitToLast(count).on('child_added', handler);
 
     return Promise.resolve(true);
   }
@@ -39,6 +42,22 @@ class DBManager {
     this.chatMessagesRef.off();
     return Promise.resolve(true);
 
+  }
+
+  /**
+   * 
+   * @param {*} from 
+   * @param {*} count 
+   */
+  loadOldMessages(from, count=LOAD_COUNT) {
+    if(!this.chatMessagesRef) return Promise.reject(new Error("no chatMessagesRef"));
+
+    const newMessagesPromise = this.chatMessagesRef.orderByChild([MESSAGE, CREATED_AT].join('/')).endAt(from-1).limitToLast(count).once('value');
+
+    return newMessagesPromise.then(snap=>{
+      return snap.val();
+    });    
+      
   }
 
   sendMessage(message) {

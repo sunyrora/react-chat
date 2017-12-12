@@ -3,6 +3,7 @@
   flex-direction: column;
   flex-wrap: nowrap;
   padding: 3px;
+  margin-top: 10px;
   min-height: 70px;
   justify-content: flex-start;
   animation-duration: 700ms;
