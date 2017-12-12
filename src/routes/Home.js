@@ -12,10 +12,6 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    // if(this.loginComponent) {
-    //   console.log("########HOME:: this.loginComponent::: ", this.loginComponent);
-    //   this.loginComponent.focusInputName();
-    // }
   }
 
   handleEnterRoom(event) {

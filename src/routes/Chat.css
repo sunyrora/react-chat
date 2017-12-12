@@ -41,6 +41,18 @@
 
 .messageContainer {
   margin-top: 15px;
+  animation-duration: 700ms;
+  animation-name: fadein;
+  animation-iteration-count: 1;
+}
+
+@keyframes fadein {
+  from { 
+    opacity: 0;
+  }
+  to { 
+    opacity: 1;
+  }
 }
 
 .footer {
