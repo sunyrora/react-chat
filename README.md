@@ -26,8 +26,8 @@ Something like..
   authDomain: ...,
   databaseURL: ...,
   projectId: ...,
-  storageBucket: ..,
-  messagingSenderId: ..
+  storageBucket: ...,
+  messagingSenderId: ...
 };
 ```
 
