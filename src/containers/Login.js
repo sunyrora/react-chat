@@ -29,9 +29,10 @@ class Login extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.haldleEnterRoom = this.haldleEnterRoom.bind(this);
+    this.handleEnterRoom = this.handleEnterRoom.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
     this.focusInputName = this.focusInputName.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
   componentDidMount() {
@@ -42,7 +43,7 @@ class Login extends Component {
     this.setState({name: event.target.value});
   }
 
-  haldleEnterRoom(event) {
+  handleEnterRoom(event) {
     console.log(isEmpty(this.state.name));
     if(isEmpty(this.state.name)) {
       alert("Enter your name");
@@ -52,6 +53,12 @@ class Login extends Component {
 
       storage.set('userName', this.state.name);
       this.props.loginRequest(AuthProvider.ANONYM);
+    }
+  }
+
+  handleKeyDown(event) {
+    if(event.keyCode === 13) { // Enter key
+      this.handleEnterRoom(event);
     }
   }
 
@@ -88,12 +95,13 @@ class Login extends Component {
           placeholder={"이름/Nom/Name"}
           value={this.state.name}
           onChange={this.handleChange}
+          onKeyDown={this.handleKeyDown}
           maxLength={MAX_NAME}
           innerRef={c=>{this.inputName = c;}}
         />
         <Button
           className={cx('mainChild', 'button')}
-          onClick={this.haldleEnterRoom}
+          onClick={this.handleEnterRoom}
         >
           Login
         </Button>

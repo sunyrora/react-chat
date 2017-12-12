@@ -38,7 +38,7 @@ class MessageInput extends Component {
   }
 
   handleKeyDown(event) {
-    if(event.keyCode === 13) {
+    if(event.keyCode === 13) { // Enter key
       this.sendMessage();
     }
   }
