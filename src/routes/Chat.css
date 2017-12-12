@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Inconsolata|Indie+Flower|Montserrat|Ranchers|Rokkitt');
-
 .mainContainer {
   display: flex;
   flex-direction: column;
@@ -39,6 +37,10 @@
   padding: 10px;
   flex: 1 1 auto;
   background-color: rgba(255, 255, 255, 0.5);
+}
+
+.messageContainer {
+  margin-top: 15px;
 }
 
 .footer {

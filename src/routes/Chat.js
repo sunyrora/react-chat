@@ -55,7 +55,7 @@ class Chat extends Component {
   componentWillUnmount() {
     try {
       DBManager.removeChatMessageHandler();
-      if(this.MessagesList) this.MessagesList.removeEventListener('scroll');
+      if(this.MessagesList) this.MessagesList.removeEventListener('scroll', this.handleScroll);
     } catch (error) {
       console.log(error.stack);
     }
@@ -122,6 +122,7 @@ class Chat extends Component {
       return data.map((message, i)=>{
         return (
           <Message 
+            className={cx('messageContainer')}
             key={message.id}
             currUserId={this.props.authState.currentUser.uid}
             message={message.message}

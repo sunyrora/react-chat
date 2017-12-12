@@ -1,6 +1,8 @@
-.mainContainer {
+@import url('https://fonts.googleapis.com/css?family=Questrial');
+/* .mainContainer {
   display: flex;
   flex-direction: column;
+  margin-top: 10px;
   flex-wrap: nowrap;
   padding: 3px;
   margin-top: 10px;
@@ -9,7 +11,9 @@
   animation-duration: 700ms;
   animation-name: fadein;
   animation-iteration-count: 1;
-}
+  border: 1px solid;
+  height: 100px;
+} */
 
 .right {
   align-self: flex-end;
@@ -31,9 +35,13 @@
 .userName {
   color: #8f3d88;
   font-weight: 500;
-  padding: 5px;
+  padding: 1px;
   text-align: left;
   /* text-shadow: 1px 1px 1px rgba(8f, 3d, 88, 0.3); */
+}
+
+.userName.right {
+  text-align: right;
 }
 
 .textContainer {
@@ -51,10 +59,12 @@
   background-color: rgba(255, 255, 255, 0.8);
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
   width: auto;
-  max-width: 200px;
+  max-width: 220px;
   padding: 10px;
   text-align: left;
-  height: 100%;
+  font-family: 'Questrial', sans-serif;
+  font-size: 1.1em;
+  line-height: 130%;
 }
 
 .createdAt {
