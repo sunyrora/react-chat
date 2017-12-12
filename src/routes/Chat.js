@@ -47,13 +47,15 @@ class Chat extends Component {
 
   componentDidUpdate() {
     if(this.MessagesList) {
-      this.MessagesList.addEventListener("scroll", this.handleScroll);
+      this.MessagesList.addEventListener('scroll', this.handleScroll);
+      this.MessagesList.scrollTop = this.MessagesList.scrollHeight;
     }
   }
 
   componentWillUnmount() {
     try {
-      DBManager.removeChatMessageHandler(); 
+      DBManager.removeChatMessageHandler();
+      if(this.MessagesList) this.MessagesList.removeEventListener('scroll');
     } catch (error) {
       console.log(error.stack);
     }
@@ -87,11 +89,6 @@ class Chat extends Component {
      */
     const message = snap.val();
     this.setState(update(this.state, {messages: {$push: [message]}}));
-
-    // scroll to bottom
-    if(this.MessagesList) {
-      this.MessagesList.scrollTop = this.MessagesList.scrollHeight;
-    }
   }
 
   sendMessage(message) {
