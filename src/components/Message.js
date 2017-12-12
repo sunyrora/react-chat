@@ -8,8 +8,8 @@ const Message = ({currUserId, message}) => {
   const messagePosition = (message.userId===currUserId) ? 'right' : 'left';
   return (
     <div className={cx('mainContainer', messagePosition)}>
-      <div className={cx('userName')}>{message.userName}</div>
-      <div className={cx('textContainer')}>
+      <div className={cx('userName', messagePosition)}>{message.userName}</div>
+      <div className={cx('textContainer', messagePosition)}>
         <div className={cx('text')}>
           {message.text}
         </div>

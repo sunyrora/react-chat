@@ -44,7 +44,6 @@ class Login extends Component {
   }
 
   handleEnterRoom(event) {
-    console.log(isEmpty(this.state.name));
     if(isEmpty(this.state.name)) {
       alert("Enter your name");
       console.log(this.inputName);
