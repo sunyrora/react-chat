@@ -10,7 +10,7 @@ You can see the [Demo here](https://chatroom-45d5f.firebaseapp.com/).
 Enter your name on the front page and login, then click 'chat' button to go to the chat room.
 
 
-## Test the source
+## Run the source
 
 To test the source, you just need the **firebaseConfig.js** file in the 'src/firebase/' diirectory.
 
